@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Manver's Photo Showcase</title>
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Nabla&display=swap" rel="stylesheet">
+
+        <style>
+            /* --- Base Setup --- */
+            body {
+                margin: 0;
+                padding: 0;
+                color: #ffffff;
+                font-family: system-ui, -apple-system, sans-serif;
+                min-height: 100vh;
+
+                /* Background Image Setup */
+                background-image: url('https://images.unsplash.com/photo-1554050857-c84a8abdb5e2');
+                background-size: cover;
+                background-position: center;
+                background-attachment: fixed;
+                background-repeat: no-repeat;
+            }
+
+            /* Dark Overlay */
+            body::before {
+                content: "";
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.6);
+                z-index: -1;
+            }
+
+            header {
+                padding: 40px 20px 20px 20px;
+                text-align: center;
+                position: relative;
+                z-index: 1;
+            }
+
+            /* --- Nabla Font Settings --- */
+            h1 {
+                font-family: 'Nabla', cursive;
+                font-size: 4rem;
+                font-weight: 400;
+                margin: 0;
+                line-height: 1.1;
+                filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.5));
+            }
+
+            /* --- FULL WIDTH Masonry Grid --- */
+            .gallery {
+                max-width: 100%;
+                width: 100%;
+                column-count: 4;
+                column-gap: 20px;
+                padding: 0 20px 20px 20px;
+                box-sizing: border-box;
+                transition: all 0.3s ease;
+            }
+
+            /* --- The Card --- */
+            .card {
+                position: relative;
+                break-inside: avoid;
+                margin-bottom: 20px;
+                border-radius: 4px;
+                overflow: hidden;
+                cursor: pointer;
+                transition: transform 0.3s ease, filter 0.3s ease;
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+                background-color: rgba(0, 0, 0, 0.2);
+            }
+
+            .card img {
+                width: 100%;
+                height: auto;
+                display: block;
+                transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            }
+
+            .card:hover {
+                filter: brightness(1.2);
+                transform: translateY(-5px);
+            }
+
+            /* --- THE PAPER STRIP CAPTION --- */
+            .caption {
+                position: fixed;
+                /* Positioned near the bottom of the screen */
+                bottom: 5vh;
+
+                /* Centering Logic */
+                left: 50%;
+                /* Translate centers it (-50%), Rotate gives it the "taped on" look (-2deg) */
+                transform: translateX(-50%) rotate(-2deg) translateY(50px);
+
+                /* Paper Strip Styling */
+                background-color: #fffdf5;
+                /* Off-white paper color */
+                color: #222222;
+                /* Dark ink color */
+                padding: 12px 30px;
+                width: auto;
+                /* Fit text size */
+                min-width: 200px;
+
+                /* Box Styling */
+                box-shadow: 3px 4px 10px rgba(0, 0, 0, 0.4);
+                /* Shadow for depth */
+                border: 1px solid #e0dacc;
+                /* Subtle paper border */
+
+                /* Text Styling */
+                text-align: center;
+                opacity: 0;
+                pointer-events: none;
+                transition: opacity 0.4s ease 0.1s, transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+                /* Bouncy pop-up */
+                z-index: 1001;
+            }
+
+            .caption h3 {
+                margin: 0;
+                /* Typewriter font stack */
+                font-family: 'Courier New', Courier, monospace;
+                font-size: 1.2rem;
+                font-weight: 700;
+                letter-spacing: -0.5px;
+                text-transform: uppercase;
+            }
+
+
+            /* --- ACTIVE STATE (Lightbox) --- */
+            .card.active {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100vw;
+                height: 100vh;
+                z-index: 1000;
+                background-color: rgba(0, 0, 0, 0.95);
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                margin: 0;
+                padding: 0;
+                border-radius: 0;
+                cursor: zoom-out;
+                filter: brightness(1);
+                transform: none !important;
+            }
+
+            .card.active img {
+                max-width: 90vw;
+                max-height: 85vh;
+                /* Slightly reduced to make room for paper strip */
+                width: auto;
+                height: auto;
+                object-fit: contain;
+                box-shadow: 0 0 50px rgba(0, 0, 0, 0.8);
+                border-radius: 4px;
+            }
+
+            /* Show and Animate Caption in Active State */
+            .card.active .caption {
+                opacity: 1;
+                /* Slide up into place */
+                transform: translateX(-50%) rotate(-2deg) translateY(0);
+            }
+
+            /* --- BACKGROUND BLUR LOGIC --- */
+            .gallery.has-active .card:not(.active) {
+                filter: blur(8px) opacity(0.3);
+                pointer-events: none;
+            }
+
+            /* --- Responsive Columns --- */
+            @media (max-width: 1400px) {
+                .gallery {
+                    column-count: 3;
+                }
+            }
+
+            @media (max-width: 900px) {
+                .gallery {
+                    column-count: 2;
+                }
+            }
+
+            @media (max-width: 600px) {
+                .gallery {
+                    column-count: 1;
+                }
+
+                h1 {
+                    font-size: 2.5rem;
+                }
+
+                .caption {
+                    width: 80%;
+                }
+
+                /* prevent strip from being too wide on mobile */
+            }
+        </style>
+    </head>
+
+    <body>
+
+        <header>
+            <h1>Manveer's Cool Photos</h1>
+        </header>
+
+        <div class="gallery" id="galleryContainer">
+        
+            <div class="card" onclick="toggleCard(this)">
+                <img src="after rain.jpeg" alt="Water Drops on Leaves">
+                <div class="caption">
+                    <h3>Holding onto the rain</h3>
+                </div>
+            </div>
+        
+            <div class="card" onclick="toggleCard(this)">
+                <img src="cove.jpeg" alt="Cozy looking Pond">
+                <div class="caption">
+                    <h3>Good place to sit and think about life</h3>
+                </div>
+            </div>
+        
+            <div class="card" onclick="toggleCard(this)">
+                <img src="clouds.jpeg" alt="Clouds">
+                <div class="caption">
+                    <h3>Don't know why but I am always kinda scared after looking at clouds like this. </h3>
+                </div>
+            </div>
+        
+            <div class="card" onclick="toggleCard(this)">
+                <img src="Farm.jpeg" alt="Farm">
+                <div class="caption">
+                    <h3>Slow Life does sound nice sometimes.</h3>
+                </div>
+            </div>
+        
+            <div class="card" onclick="toggleCard(this)">
+                <img src="green.jpeg" alt="Leaves over wheatgrass">
+                <div class="caption">
+                    <h3>The branch really wants to talk with the wheatgrass.</h3>
+                </div>
+            </div>
+        
+            <div class="card" onclick="toggleCard(this)">
+                <img src="lights.jpeg" alt="Big Floodlights">
+                <div class="caption">
+                    <h3>Moths were going crazy around this.</h3>
+                </div>
+            </div>
+        
+            <div class="card" onclick="toggleCard(this)">
+                <img src="love.jpeg" alt="A Tube well">
+                <div class="caption">
+                    <h3>There a 2 kinds of people in the world, Ones who can hear this picture and the rest.</h3>
+                </div>
+            </div>
+        
+            <div class="card" onclick="toggleCard(this)">
+                <img src="Mountains.jpeg" alt="Mountains">
+                <div class="caption">
+                    <h3>I am realizing I'm just scared of big things</h3>
+                </div>
+            </div>
+        
+            <div class="card" onclick="toggleCard(this)">
+                <img src="orange sky.jpeg" alt="orange sky">
+                <div class="caption">
+                    <h3>I assure you the photo does not capture how orange the sky was in person.</h3>
+                </div>
+            </div>
+        
+            <div class="card" onclick="toggleCard(this)">
+                <img src="Parade.jpeg" alt="A parade holding lights walking through the night">
+                <div class="caption">
+                    <h3>My chemical romance</h3>
+                </div>
+            </div>
+        
+            <div class="card" onclick="toggleCard(this)">
+                <img src="Window.jpeg" alt="Sky visible through the canopy">
+                <div class="caption">
+                    <h3>The trees were kind enough here to let us see the beautiful blue sky </h3>
+                </div>
+            </div>
+        
+            <div class="card" onclick="toggleCard(this)">
+                <img src="Pink.jpeg" alt="Cute Pink Flower">
+                <div class="caption">
+                    <h3>Roses are overrated</h3>
+                </div>
+            </div>
+        
+            <div class="card" onclick="toggleCard(this)">
+                <img src="sunset.jpeg" alt="Beautiful sunset over farmland">
+                <div class="caption">
+                    <h3>I'll alwas prefer sunsets over sunrises because Sunsets always ask you to go home.</h3>
+                </div>
+            </div>
+        
+            <div class="card" onclick="toggleCard(this)">
+                <img src="webs.jpeg" alt="tiny webs in grass">
+                <div class="caption">
+                    <h3>Some little spider worked very hard on this</h3>
+                </div>
+            </div>
+        
+            <div class="card" onclick="toggleCard(this)">
+                <img src="Peeking.jpeg" alt="Mountain peeking thorugh trees">
+                <div class="caption">
+                    <h3>Even mountains play peekaboo.</h3>
+                </div>
+            </div>
+        
+        </div>
+        <script>
+            function toggleCard(clickedCard) {
+                const gallery = document.getElementById('galleryContainer');
+                const allCards = document.querySelectorAll('.card');
+
+                const isAlreadyActive = clickedCard.classList.contains('active');
+
+                // Reset all
+                allCards.forEach(card => card.classList.remove('active'));
+                gallery.classList.remove('has-active');
+
+                // Toggle active
+                if (!isAlreadyActive) {
+                    clickedCard.classList.add('active');
+                    gallery.classList.add('has-active');
+                }
+            }
+        </script>
+
+    </body>
+
+</html>
