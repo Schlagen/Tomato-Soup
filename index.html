@@ -212,6 +212,36 @@
 
                 /* prevent strip from being too wide on mobile */
             }
+
+            /* --- FOOTER STYLES --- */
+        footer {
+            margin-top: 100px; /* Space between gallery and footer */
+            padding: 60px 20px;
+            background-color: #00000000; /* Deep black/gray to blend in */
+            text-align: center;
+            position: relative;
+            z-index: 10; /* Ensure it sits above the background image */
+        }
+
+        .footer-content {
+            /*max-width: 700px;*/
+            margin: 0 auto;
+        }
+
+        /* The "Typewriter" Note style */
+        .note-box {
+            font-family: 'Courier New', Courier, monospace;
+            color: #ccc;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            border: 1px dashed #444; /* Subtle dashed border */
+            padding: 5px;
+            border-radius: 4px;
+        }
+
+
+
         </style>
     </head>
 
@@ -329,6 +359,16 @@
             </div>
         
         </div>
+        
+        <footer>
+            <div class="footer-content">
+        
+                <div class="note-box">
+                    <p>All shots are mine, Feel free to download. If you want the full quality versions just ask @ <a href="mailto:manveerparmar@protonmail.com">manveerparmar@protonmail.com</a></p>
+                </div>              
+            </div>
+        </footer>
+
         <script>
             function toggleCard(clickedCard) {
                 const gallery = document.getElementById('galleryContainer');
