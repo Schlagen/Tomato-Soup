@@ -1,9 +1,3 @@
-/* ==========================================================================
-   MANVEER PARMAR — MINIMAL PHOTOGRAPHY GALLERY
-   Aesthetic: Contemporary Gentle White / Pure AMOLED Black Gallery
-   Typography: Space Grotesk (Architectural Minimal) + Plus Jakarta Sans
-   ========================================================================== */
-
 :root {
   --bg-color: #faf9f6;
   --bg-card: #f3f1ec;
@@ -24,7 +18,6 @@
   --transition-smooth: 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   --transition-bounce: 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
 
-  /* Masculine Techno-Industrial Y2K Tokens (Light Concrete/Brushed Steel) */
   --y2k-chrome: linear-gradient(135deg, #09090b 0%, #3f3f46 25%, #71717a 48%, #e4e4e7 56%, #27272a 78%, #09090b 100%);
   --y2k-star-glow: rgba(9, 9, 11, 0.25);
   --y2k-accent-cyan: #0284c7;
@@ -34,20 +27,20 @@
 }
 
 [data-theme="dark"] {
-  --bg-color: #000000; /* Pure AMOLED Black */
+  --bg-color: #000000;
   --bg-card: #08080a;
   --text-main: #f4f4f5;
   --text-muted: #71717a;
   --text-light: #52525b;
   --border-subtle: rgba(255, 255, 255, 0.14);
   --border-strong: rgba(255, 255, 255, 0.35);
-  --modal-bg: rgba(0, 0, 0, 0.96); /* Pure AMOLED Black */
+  --modal-bg: rgba(0, 0, 0, 0.96);
   --card-shadow: rgba(0, 0, 0, 0.6);
   --toggle-track: rgba(255, 255, 255, 0.14);
   --toggle-thumb: #ffffff;
   --toggle-icon: #a1a1aa;
 
-  /* Masculine Techno-Industrial Y2K Tokens (AMOLED Pure Black & Liquid Platinum Chrome) */
+
   --y2k-chrome: linear-gradient(135deg, #ffffff 0%, #a1a1aa 22%, #38bdf8 46%, #ffffff 58%, #71717a 80%, #ffffff 100%);
   --y2k-star-glow: rgba(56, 189, 248, 0.45);
   --y2k-accent-cyan: #38bdf8;
@@ -56,7 +49,9 @@
   --y2k-glare: linear-gradient(115deg, transparent 20%, rgba(255, 255, 255, 0.45) 46%, rgba(56, 189, 248, 0.35) 52%, transparent 75%);
 }
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -98,25 +93,24 @@ img {
   height: auto;
 }
 
-/* Custom Minimal Scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
+
 ::-webkit-scrollbar-track {
   background: transparent;
 }
+
 ::-webkit-scrollbar-thumb {
   background: var(--border-strong);
   border-radius: 3px;
 }
+
 ::-webkit-scrollbar-thumb:hover {
   background: var(--text-muted);
 }
 
-/* ==========================================================================
-   MINIMAL HEADER & BRANDING
-   ========================================================================== */
 .gallery-header {
   width: 100%;
   padding: 44px 56px 28px 56px;
@@ -183,7 +177,6 @@ img {
   transition: color var(--transition-smooth);
 }
 
-/* Masculine Metallic Star Accent */
 .y2k-star {
   display: inline-block;
   line-height: 1;
@@ -201,9 +194,6 @@ img {
   margin-left: 2px;
 }
 
-/* ==========================================================================
-   MASCULINE TECHNO-INDUSTRIAL Y2K TICKER MARQUEE
-   ========================================================================== */
 .y2k-ticker {
   width: 100%;
   overflow: hidden;
@@ -252,9 +242,6 @@ img {
   opacity: 0.6;
 }
 
-/* ==========================================================================
-   ANIMATED THEME TOGGLE (AMOLED DARK / LIGHT)
-   ========================================================================== */
 .theme-toggle {
   display: inline-flex;
   align-items: center;
@@ -314,7 +301,8 @@ img {
 
 [data-theme="dark"] .moon-icon {
   opacity: 1;
-  color: #fbbf24; /* subtle golden moon glow */
+  color: #fbbf24;
+  /* subtle golden moon glow */
   transform: rotate(-10deg);
 }
 
@@ -334,9 +322,6 @@ img {
   transform: translateX(29px);
 }
 
-/* ==========================================================================
-   MAIN GALLERY WRAPPER (FLUID HORIZONTAL CAROUSEL)
-   ========================================================================== */
 .gallery-main {
   width: 100%;
   position: relative;
@@ -366,7 +351,6 @@ img {
   cursor: grabbing;
 }
 
-/* Individual Carousel Item with Y2K Glare & Physics */
 .carousel-card {
   flex: 0 0 auto;
   height: clamp(420px, 66vh, 680px);
@@ -381,7 +365,6 @@ img {
   will-change: transform;
 }
 
-/* Y2K Holographic Glare sweep across the card on hover */
 .carousel-card::before {
   content: '';
   position: absolute;
@@ -419,7 +402,6 @@ img {
   transform: scale(1.02);
 }
 
-/* Caption bar peeking on hover */
 .card-hover-caption {
   position: absolute;
   bottom: 0;
@@ -443,7 +425,6 @@ img {
   transform: translateY(0);
 }
 
-/* Carousel Navigation Bar */
 .carousel-nav {
   max-width: 1600px;
   margin: 18px auto 0;
@@ -498,10 +479,6 @@ img {
   transition: all var(--transition-smooth);
 }
 
-/* ==========================================================================
-   EXPANDED PHOTO MODAL (LIGHTBOX)
-   Only shows: photo, caption, download button, minimise button
-   ========================================================================== */
 .photo-modal {
   position: fixed;
   inset: 0;
@@ -559,7 +536,6 @@ img {
   transition: transform var(--transition-smooth);
 }
 
-/* Footer under expanded image: caption + actions */
 .modal-footer {
   width: 100%;
   max-width: 880px;
@@ -652,9 +628,7 @@ img {
   left: 140%;
 }
 
-/* ==========================================================================
-   Y2K SPARKLE PARTICLES & MOUSE TRAIL
-   ========================================================================== */
+
 .y2k-sparkle-layer {
   position: fixed;
   inset: 0;
@@ -674,21 +648,30 @@ img {
   animation: y2kSparkleFade 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-/* ==========================================================================
-   KEYFRAME ANIMATIONS
-   ========================================================================== */
+
 @keyframes y2kChromeShine {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 @keyframes y2kStarTwinkle {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: rotate(0deg) scale(0.9);
     opacity: 0.8;
     filter: drop-shadow(0 0 3px var(--y2k-star-glow));
   }
+
   50% {
     transform: rotate(45deg) scale(1.35);
     opacity: 1;
@@ -697,8 +680,13 @@ img {
 }
 
 @keyframes y2kMarqueeRun {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
 }
 
 @keyframes y2kSparkleFade {
@@ -706,19 +694,19 @@ img {
     opacity: 1;
     transform: translate(0, 0) scale(0.5) rotate(0deg);
   }
+
   40% {
     opacity: 1;
     transform: translate(var(--x-shift, 0px), var(--y-shift, -20px)) scale(1.25) rotate(90deg);
   }
+
   100% {
     opacity: 0;
     transform: translate(var(--x-shift, 0px), var(--y-shift, -42px)) scale(0.2) rotate(180deg);
   }
 }
 
-/* ==========================================================================
-   RESPONSIVE REFINEMENTS
-   ========================================================================== */
+
 @media (max-width: 768px) {
   .gallery-header {
     padding: 30px 20px 18px 20px;
@@ -772,6 +760,7 @@ img {
 }
 
 @media (prefers-reduced-motion: reduce) {
+
   .title-fun,
   .y2k-ticker-track,
   .y2k-star-float,

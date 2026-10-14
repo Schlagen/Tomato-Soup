@@ -10,19 +10,17 @@
     <meta name="author" content="Manveer">
     <meta name="theme-color" content="#faf9f6">
 
-    <!-- Modern Minimalist & Fun Fonts: Syne (Bold/Fun) + Plus Jakarta Sans + Space Grotesk -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600&family=Space+Grotesk:wght@300;400;500;600&family=Syne:wght@700;800&display=swap"
         rel="stylesheet">
 
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css?v=2.0">
 </head>
 
 <body>
 
-    <!-- Minimal Header with Masculine Y2K Flair -->
     <header class="gallery-header">
         <div class="header-inner">
             <div class="brand">
@@ -35,7 +33,6 @@
                 </h1>
             </div>
 
-            <!-- Animated AMOLED Dark / Light Mode Toggle -->
             <button type="button" id="themeToggleBtn" class="theme-toggle" aria-label="Toggle dark mode"
                 title="Toggle Dark/Light Mode">
                 <span class="toggle-track">
@@ -65,7 +62,6 @@
         </div>
     </header>
 
-    <!-- Masculine Techno-Industrial Y2K Ticker Marquee -->
     <aside class="y2k-ticker" aria-hidden="true">
         <div class="y2k-ticker-track">
             <div class="y2k-ticker-content">
@@ -101,15 +97,11 @@
         </div>
     </aside>
 
-    <!-- Main Gallery Container -->
     <main class="gallery-main">
-        <!-- Fluid Carousel Gallery -->
         <section class="gallery-carousel-wrap" id="carouselSection" aria-label="Photo Gallery">
             <div class="carousel-track" id="carouselTrack" tabindex="0" aria-label="Photo Carousel">
-                <!-- Dynamically populated by app.js -->
             </div>
 
-            <!-- Carousel Nav Hints / Buttons -->
             <div class="carousel-nav">
                 <button type="button" class="carousel-arrow" id="carouselPrevBtn" aria-label="Previous slide"
                     title="Previous">←</button>
@@ -120,18 +112,15 @@
         </section>
     </main>
 
-    <!-- Photo Expand Modal -->
     <div class="photo-modal" id="photoModal" role="dialog" aria-modal="true" aria-hidden="true"
         aria-label="Expanded Photo">
         <div class="modal-backdrop" id="modalBackdrop"></div>
 
         <div class="modal-dialog">
-            <!-- Expanded Image -->
             <div class="modal-media">
                 <img id="modalImg" src="" alt="" class="modal-img">
             </div>
 
-            <!-- Under-Image Bar: Caption, Download, Minimise -->
             <div class="modal-footer">
                 <p class="modal-caption" id="modalCaption"></p>
 
@@ -147,10 +136,9 @@
         </div>
     </div>
 
-    <!-- Floating Sparkle Particle Canvas / Layer -->
     <div id="y2kSparkleContainer" class="y2k-sparkle-layer" aria-hidden="true"></div>
 
-    <script src="app.js" defer></script>
+    <script src="app.js?v=2.0" defer></script>
 </body>
 
 </html>
