@@ -1,393 +1,349 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>¯\_(ツ)_/¯</title>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manveer's Cool Photos — Artist Workbench & Scrapbook Archive</title>
 
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Nabla&display=swap" rel="stylesheet">
+    <!-- Meta & SEO -->
+    <meta name="description"
+        content="A raw, cluttered artist workbench and scrapbook of 35mm captures, unscripted skies, and quiet corners of the world by Manveer Parmar.">
+    <meta name="author" content="Manveer Parmar">
+    <meta name="theme-color" content="#141311">
 
-        <style>
-            /* --- Base Setup --- */
-            body {
-                margin: 0;
-                padding: 0;
-                color: #ffffff;
-                font-family: system-ui, -apple-system, sans-serif;
-                min-height: 100vh;
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Manveer's Cool Photos — Artist Workbench">
+    <meta property="og:image" content="Images/Clouds.webp">
 
-                /* Background Image Setup */
-                background-image: url('https://images.unsplash.com/photo-1554050857-c84a8abdb5e2');
-                background-size: cover;
-                background-position: center;
-                background-attachment: fixed;
-                background-repeat: no-repeat;
-            }
+    <!-- Artsy Masculine Fonts: Staatliches, Special Elite, Permanent Marker, Bebas Neue, Courier Prime -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Permanent+Marker&family=Special+Elite&family=Staatliches&display=swap"
+        rel="stylesheet">
 
-            /* Dark Overlay */
-            body::before {
-                content: "";
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background: rgba(0, 0, 0, 0.6);
-                z-index: -1;
-            }
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+</head>
 
-            header {
-                padding: 40px 20px 20px 20px;
-                text-align: center;
-                position: relative;
-                z-index: 1;
-            }
+<body>
 
-            /* --- Nabla Font Settings --- */
-            h1 {
-                font-family: 'Nabla', cursive;
-                font-size: 4rem;
-                font-weight: 400;
-                margin: 0;
-                line-height: 1.1;
-                filter: drop-shadow(0 2px 5px rgba(255, 255, 255, 0.377));
-            }
+    <!-- Ambient Workbench Clutter Props -->
+    <div class="coffee-stain-prop" aria-hidden="true" title="Studio coffee spill"></div>
+    <div class="coffee-stain-small" aria-hidden="true"></div>
 
-            /* --- FULL WIDTH Masonry Grid --- */
-            .gallery {
-                max-width: 100%;
-                width: 100%;
-                column-count: 4;
-                column-gap: 20px;
-                padding: 0 20px 20px 20px;
-                box-sizing: border-box;
-                transition: all 0.3s ease;
-            }
+    <!-- Pinned Yellow Post-It Memo Note on Workbench -->
+    <aside class="workbench-memo" aria-label="Artist Studio Note">
+        <p><strong>MANVEER'S DESK:</strong></p>
+        <p>All Photos are mine. Feel free to download.</p>
+        <p>Just reach out @:</p>
+        <p style="text-decoration:underline;">manveerparmar@protonmail.com</p>
+    </aside>
 
-            /* --- The Card --- */
-            .card {
-                position: relative;
-                break-inside: avoid;
-                margin-bottom: 20px;
-                border-radius: 4px;
-                overflow: hidden;
-                cursor: pointer;
-                transition: transform 0.3s ease, filter 0.3s ease;
-                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-                background-color: rgba(0, 0, 0, 0.2);
-            }
-
-            .card img {
-                width: 100%;
-                height: auto;
-                display: block;
-                transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            }
-
-            .card:hover {
-                filter: brightness(1.2);
-                transform: translateY(-5px);
-            }
-
-            /* --- THE PAPER STRIP CAPTION --- */
-            .caption {
-                position: fixed;
-                /* Positioned near the bottom of the screen */
-                bottom: 5vh;
-
-                /* Centering Logic */
-                left: 50%;
-                /* Translate centers it (-50%), Rotate gives it the "taped on" look (-2deg) */
-                transform: translateX(-50%) rotate(-2deg) translateY(50px);
-
-                /* Paper Strip Styling */
-                background-color: #fffdf5;
-                /* Off-white paper color */
-                color: #222222;
-                /* Dark ink color */
-                padding: 12px 30px;
-                width: auto;
-                /* Fit text size */
-                min-width: 200px;
-
-                /* Box Styling */
-                box-shadow: 3px 4px 10px rgba(0, 0, 0, 0.4);
-                /* Shadow for depth */
-                border: 1px solid #e0dacc;
-                /* Subtle paper border */
-
-                /* Text Styling */
-                text-align: center;
-                opacity: 0;
-                pointer-events: none;
-                transition: opacity 0.4s ease 0.1s, transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-                /* Bouncy pop-up */
-                z-index: 1001;
-            }
-
-            .caption h3 {
-                margin: 0;
-                /* Typewriter font stack */
-                font-family: 'Courier New', Courier, monospace;
-                font-size: 1.2rem;
-                font-weight: 700;
-                letter-spacing: -0.5px;
-                text-transform: uppercase;
-            }
-
-
-            /* --- ACTIVE STATE (Lightbox) --- */
-            .card.active {
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100vw;
-                height: 100vh;
-                z-index: 1000;
-                background-color: rgba(0, 0, 0, 0.95);
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                margin: 0;
-                padding: 0;
-                border-radius: 0;
-                cursor: zoom-out;
-                filter: brightness(1);
-                transform: none !important;
-            }
-
-            .card.active img {
-                max-width: 90vw;
-                max-height: 85vh;
-                /* Slightly reduced to make room for paper strip */
-                width: auto;
-                height: auto;
-                object-fit: contain;
-                box-shadow: 0 0 50px rgba(0, 0, 0, 0.8);
-                border-radius: 4px;
-            }
-
-            /* Show and Animate Caption in Active State */
-            .card.active .caption {
-                opacity: 1;
-                /* Slide up into place */
-                transform: translateX(-50%) rotate(-2deg) translateY(0);
-            }
-
-            /* --- BACKGROUND BLUR LOGIC --- */
-            .gallery.has-active .card:not(.active) {
-                filter: blur(8px) opacity(0.3);
-                pointer-events: none;
-            }
-
-            /* --- Responsive Columns --- */
-            @media (max-width: 1400px) {
-                .gallery {
-                    column-count: 3;
-                }
-            }
-
-            @media (max-width: 900px) {
-                .gallery {
-                    column-count: 2;
-                }
-            }
-
-            @media (max-width: 600px) {
-                .gallery {
-                    column-count: 1;
-                }
-
-                h1 {
-                    font-size: 2.5rem;
-                }
-
-                .caption {
-                    width: 80%;
-                }
-
-                /* prevent strip from being too wide on mobile */
-            }
-
-            /* --- FOOTER STYLES --- */
-        footer {
-            margin-top: 100px; /* Space between gallery and footer */
-            padding: 60px 20px;
-            background-color: #00000000; /* Deep black/gray to blend in */
-            text-align: center;
-            position: relative;
-            z-index: 10; /* Ensure it sits above the background image */
-        }
-
-        .footer-content {
-            max-width: 1320px;
-            margin: 0 auto;
-        }
-
-        /* The "Typewriter" Note style */
-        .note-box {
-            font-family: 'Courier New', Courier, monospace;
-            color: #ccc;
-            font-size: 1.1rem;
-            line-height: 1.6;
-            margin-bottom: 30px;
-            border: 1px dashed #444; /* Subtle dashed border */
-            padding: 5px;
-            border-radius: 4px;
-        }
-
-
-
-        </style>
-    </head>
-
-    <body>
-
-        <header>
-            <h1>Manveer's Cool Photos</h1>
-        </header>
-
-        <div class="gallery" id="galleryContainer">
-        
-            <div class="card" onclick="toggleCard(this)">
-                <img src="Images/after rain.webp" alt="Water Drops on Leaves">
-                <div class="caption">
-                    <h3>Holding onto the rain.</h3>
-                </div>
-            </div>
-        
-            <div class="card" onclick="toggleCard(this)">
-                <img src="Images/cove.webp" alt="Cozy looking Pond">
-                <div class="caption">
-                    <h3>Looked like a good place to sit and think.</h3>
-                </div>
-            </div>
-        
-            <div class="card" onclick="toggleCard(this)">
-                <img src="Images/Clouds.webp" alt="Clouds">
-                <div class="caption">
-                    <h3>Don't know why but I am always kinda scared after looking at clouds like this. </h3>
-                </div>
-            </div>
-        
-            <div class="card" onclick="toggleCard(this)">
-                <img src="Images/farm.webp" alt="Farm">
-                <div class="caption">
-                    <h3>Slow Life does sound nice sometimes.</h3>
-                </div>
-            </div>
-        
-            <div class="card" onclick="toggleCard(this)">
-                <img src="Images/green.webp" alt="Leaves over wheatgrass">
-                <div class="caption">
-                    <h3>The branch really wants to talk to the wheatgrass.</h3>
-                </div>
-            </div>
-        
-            <div class="card" onclick="toggleCard(this)">
-                <img src="Images/love.webp" alt="A Tube well">
-                <div class="caption">
-                    <h3>There a 2 kinds of people in the world, people who can hear this picture and the rest.</h3>
-                </div>
-            </div>
-        
-            <div class="card" onclick="toggleCard(this)">
-                <img src="Images/Mountains.webp" alt="Mountains">
-                <div class="caption">
-                    <h3>I am realizing I'm just scared of big things.</h3>
-                </div>
-            </div>
-        
-            <div class="card" onclick="toggleCard(this)">
-                <img src="Images/orange sky.webp" alt="orange sky">
-                <div class="caption">
-                    <h3>I assure you the photo does not capture how orange the sky was in person.</h3>
-                </div>
-            </div>
-        
-            <div class="card" onclick="toggleCard(this)">
-                <img src="Images/parade.webp" alt="A parade holding lights walking through the night">
-                <div class="caption">
-                    <h3>My Chemical Romance</h3>
-                </div>
-            </div>
-        
-            <div class="card" onclick="toggleCard(this)">
-                <img src="Images/Window.webp" alt="Sky visible through the canopy">
-                <div class="caption">
-                    <h3>The trees are always kind enough to leave some space for the sky to peek through.</h3>
-                </div>
-            </div>
-        
-            <div class="card" onclick="toggleCard(this)">
-                <img src="Images/pink.webp" alt="Cute Pink Flower">
-                <div class="caption">
-                    <h3>Roses are overrated anyway.</h3>
-                </div>
-            </div>
-        
-            <div class="card" onclick="toggleCard(this)">
-                <img src="Images/sunset.webp" alt="Beautiful sunset over farmland">
-                <div class="caption">
-                    <h3>I'll alwas prefer sunsets over sunrises because Sunsets always let me know that it's time to head home.</h3>
-                </div>
-            </div>
-        
-            <div class="card" onclick="toggleCard(this)">
-                <img src="Images/webs.webp" alt="tiny webs in grass">
-                <div class="caption">
-                    <h3>Some little spider worked very hard on this</h3>
-                </div>
-            </div>
-        
-            <div class="card" onclick="toggleCard(this)">
-                <img src="Images/Peeking.webp" alt="Mountain peeking thorugh trees">
-                <div class="caption">
-                    <h3>Even mountains play peekaboo sometimes.</h3>
-                </div>
+    <!-- Top Workbench Header Strip -->
+    <header class="workbench-header">
+        <div class="header-top-strip">
+            <div class="studio-tag">
+                <span class="dymo-badge">TOMATO SOUP STUDIO</span>
+                <span class="stamp-seal">Last Pic added 13/10/2026</span>
             </div>
 
-            <div class="card" onclick="toggleCard(this)">
-                <img src="Images/lights.webp" alt="Big Floodlights">
-                <div class="caption">
-                    <h3>Moths were going crazy around this.</h3>
-                </div>
+            <!-- Workbench Tools -->
+            <div class="header-tools">
+                <button type="button" id="soundToggleBtn" class="workbench-btn" title="Toggle tactile shutter click (M)"
+                    aria-label="Toggle sound effects">
+                    <span id="soundIconText">🔊 SHUTTER SOUND</span>
+                </button>
+
+                <button type="button" id="randomPhotoBtn" class="workbench-btn" title="Shuffle prints (R)"
+                    aria-label="Shuffle random print">
+                    <span>🎲 SHUFFLE PRINTS</span>
+                </button>
+
+                <button type="button" id="openShortcutsBtn" class="workbench-btn" title="Desk Shortcuts (?)"
+                    aria-label="View shortcuts">
+                    <span>⌨ KEYS</span>
+                </button>
+
+                <a href="#aboutSection" class="workbench-btn"
+                    style="background:#2a251e; color:#f59e0b; border-color:#f59e0b;">
+                    <span>✉ CONTACT</span>
+                </a>
             </div>
-        
         </div>
-        
-        <footer>
-            <div class="footer-content">
-        
-                <div class="note-box">
-                    <p>All shots are mine, Feel free to download. If you want the full quality versions just ask @ <a href="mailto:manveerparmar@protonmail.com">manveerparmar@protonmail.com</a></p>
-                </div>              
+
+        <!-- Big Bold Masculine Title -->
+        <div class="title-block">
+            <span class="title-marker-pre">Just some cool pics i like</span>
+            <h1 class="main-title">
+                MANVEER'S <span class="highlight-ink">COOL PHOTOS</span>
+            </h1>
+        </div>
+    </header>
+
+    <main>
+        <!-- Analog Controls: Torn Masking Tape Tabs & Typed Index Search -->
+        <section class="analog-controls-board" aria-label="Studio Desk Controls">
+            <div class="board-inner">
+
+                <!-- Masking Tape Category Filters (No Slick Tech Pills!) -->
+                <div class="tape-tabs-row" id="filterPills" role="tablist" aria-label="Print Categories">
+                    <button type="button" class="tape-tab active" data-filter="all" role="tab" aria-selected="true">
+                        <span>[ ALL 15 PRINTS ]</span>
+                        <span class="tape-count pill-count">15</span>
+                    </button>
+                    <button type="button" class="tape-tab" data-filter="vistas" role="tab" aria-selected="false">
+                        <span>[ SKIES & HORIZONS ]</span>
+                        <span class="tape-count pill-count">7</span>
+                    </button>
+                    <button type="button" class="tape-tab" data-filter="nature" role="tab" aria-selected="false">
+                        <span>[ BOTANICAL & WEEDS ]</span>
+                        <span class="tape-count pill-count">5</span>
+                    </button>
+                    <button type="button" class="tape-tab" data-filter="mood" role="tab" aria-selected="false">
+                        <span>[ NIGHT SHIFTS ]</span>
+                        <span class="tape-count pill-count">2</span>
+                    </button>
+                    <button type="button" class="tape-tab" data-filter="nostalgia" role="tab" aria-selected="false">
+                        <span>[ MEMORY PIECES ]</span>
+                        <span class="tape-count pill-count">1</span>
+                    </button>
+                    <button type="button" class="tape-tab" data-filter="favorites" role="tab" aria-selected="false">
+                        <span>[ ★ PINNED TO DESK ]</span>
+                        <span class="tape-count pill-count" id="favPillCount">0</span>
+                    </button>
+                </div>
+
+                <!-- Bottom Search & Darkroom Layout Switcher -->
+                <div class="board-bottom-row">
+
+                    <!-- Typed Index Card Search Bar -->
+                    <div class="typed-search-wrap">
+                        <div class="typed-search-card">
+                            <span class="search-paperclip" aria-hidden="true">📎</span>
+                            <input type="text" id="searchInput" class="typed-search-input"
+                                placeholder="Sift prints by caption, clouds, rain, spiders..." autocomplete="off"
+                                aria-label="Search prints">
+                            <span id="searchClearBtn" class="search-clear-cross" title="Clear search"
+                                aria-label="Clear search">✕</span>
+                        </div>
+                    </div>
+
+                    <!-- Darkroom View Switcher -->
+                    <div class="darkroom-modes">
+                        <span class="mode-label">LAYOUT:</span>
+                        <button type="button" class="darkroom-mode-btn view-btn active" data-view="masonry"
+                            title="Scattered Scrapbook Table">
+                            <span>TABLE SCATTER</span>
+                        </button>
+                        <button type="button" class="darkroom-mode-btn view-btn" data-view="grid"
+                            title="Clean Darkroom Proof Sheet">
+                            <span>PROOF GRID</span>
+                        </button>
+                        <button type="button" class="darkroom-mode-btn view-btn" data-view="filmstrip"
+                            title="35mm Filmstrip Roll">
+                            <span>35MM REEL</span>
+                        </button>
+                    </div>
+
+                    <span class="dymo-badge" id="resultsCount">15 / 15 PRINTS</span>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Workbench Prints Gallery Section -->
+        <section class="prints-workspace" aria-label="Workbench Prints">
+            <div class="gallery view-masonry" id="galleryContainer">
+                <!-- Dynamically populated with physical photo cards by app.js -->
+            </div>
+
+            <!-- Empty State for Searches -->
+            <div class="empty-prints-card" id="emptyGallery" aria-live="polite">
+                <div style="font-size:2.4rem; margin-bottom:10px;">✂️</div>
+                <h3 class="empty-title">NO MATCHING PRINTS ON DESK</h3>
+                <p class="empty-text">No photographic proofs matched your search query. Try shaking the desk or clearing
+                    your keywords.</p>
+                <button type="button" class="workbench-btn" style="background:var(--stamp-red); color:#fff;"
+                    onclick="document.getElementById('searchInput').value=''; document.querySelector('.tape-tab[data-filter=\'all\']').click();">
+                    RESET TO ALL 15 PRINTS
+                </button>
+            </div>
+        </section>
+
+        <!-- Artist Desk Contact & Kraft Folder Section -->
+        <footer class="site-footer" id="aboutSection">
+            <div class="footer-inner">
+
+                <div class="bio-card">
+                    <div class="bio-avatar" aria-hidden="true">
+                        <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="3" width="20" height="14" rx="2"></rect>
+                            <line x1="8" y1="21" x2="16" y2="21"></line>
+                            <line x1="12" y1="17" x2="12" y2="21"></line>
+                        </svg>
+                    </div>
+
+                    <div class="bio-contact-actions">
+                        <button type="button" id="copyEmailBtn" class="copy-email-btn" title="Copy email address">
+                            <span>📋 COPY EMAIL</span>
+                        </button>
+                        <a href="mailto:manveerparmar@protonmail.com" class="mail-direct-btn">
+                            manveerparmar@protonmail.com
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Footer Bottom Strip -->
+                <div class="footer-bottom">
+                    <span>¯\_(ツ)_/¯ • CLUTTERED ARTIST DESK • SHOT ON LOCATION</span>
+                    <button type="button" class="workbench-btn" onclick="window.scrollTo({top:0, behavior:'smooth'})">
+                        <span>TOP OF WORKBENCH ↑</span>
+                    </button>
+                </div>
+
             </div>
         </footer>
+    </main>
 
-        <script>
-            function toggleCard(clickedCard) {
-                const gallery = document.getElementById('galleryContainer');
-                const allCards = document.querySelectorAll('.card');
+    <!-- Darkroom Inspection Lightbox Modal -->
+    <div id="lightboxModal" class="lightbox-modal" role="dialog" aria-modal="true" aria-label="Inspection Table Viewer">
 
-                const isAlreadyActive = clickedCard.classList.contains('active');
+        <!-- Lightbox Inspection Bar -->
+        <div class="lightbox-header">
+            <div class="lightbox-info">
+                <span class="dymo-badge" id="lightboxCounter">01 / 15</span>
+                <span class="lightbox-title" id="lightboxTitle">Holding onto the rain</span>
+            </div>
 
-                // Reset all
-                allCards.forEach(card => card.classList.remove('active'));
-                gallery.classList.remove('has-active');
+            <div class="lightbox-tools">
+                <button type="button" id="lightboxLikeBtn" class="tool-btn" title="Pin / Save to desk (L)"
+                    aria-label="Pin print">
+                    <span>★ PIN</span>
+                </button>
 
-                // Toggle active
-                if (!isAlreadyActive) {
-                    clickedCard.classList.add('active');
-                    gallery.classList.add('has-active');
-                }
-            }
-        </script>
+                <button type="button" id="lightboxZoomBtn" class="tool-btn" title="Toggle loupe zoom (Z)"
+                    aria-label="Toggle zoom">
+                    <span>🔍 LOUPE</span>
+                </button>
 
-    </body>
+                <button type="button" id="lightboxFullscreenBtn" class="tool-btn" title="Fullscreen (F)"
+                    aria-label="Toggle fullscreen">
+                    <span>⛶ FULL</span>
+                </button>
+
+                <a id="lightboxDownloadBtn" class="tool-btn" href="#" download="" title="Download full print (D)"
+                    aria-label="Download print">
+                    <span>⬇ SAVE PRINT</span>
+                </a>
+
+                <button type="button" id="lightboxShareBtn" class="tool-btn" title="Copy print link"
+                    aria-label="Share print link">
+                    <span>🔗 LINK</span>
+                </button>
+
+                <button type="button" id="lightboxCloseBtn" class="tool-btn close-btn" title="Close (ESC)"
+                    aria-label="Close viewer">
+                    <span>✕ CLOSE</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Center Inspection Stage -->
+        <div class="lightbox-stage">
+            <button type="button" id="lightboxPrevBtn" class="lightbox-nav-btn prev" title="Previous print (←)"
+                aria-label="Previous print">
+                <span style="font-family:var(--font-dymo); font-size:1.4rem;">◄</span>
+            </button>
+
+            <!-- Physical Print under Inspection Lamp -->
+            <div class="lightbox-img-wrap" id="lightboxImgWrap">
+                <img id="lightboxImg" class="lightbox-img" src="" alt="">
+            </div>
+
+            <button type="button" id="lightboxNextBtn" class="lightbox-nav-btn next" title="Next print (→)"
+                aria-label="Next print">
+                <span style="font-family:var(--font-dymo); font-size:1.4rem;">►</span>
+            </button>
+
+            <!-- Taped Field Note Card -->
+            <div class="lightbox-caption-wrap" id="lightboxCaptionWrap">
+                <div class="lightbox-paper-note">
+                    <h3 class="lightbox-caption-text" id="lightboxCaptionText">"Holding onto the rain."</h3>
+                    <div class="lightbox-caption-tag" id="lightboxCaptionTag">// BOTANICAL & WEEDS</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 35mm Filmstrip Dock at Bottom -->
+        <div class="lightbox-dock">
+            <div class="dock-strip" id="dockStrip" role="tablist" aria-label="35mm Filmstrip Reel">
+                <!-- Dynamically injected by app.js -->
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Floating Back to Top Button -->
+    <button type="button" id="backToTopBtn" class="back-to-top-btn" title="Back to top" aria-label="Scroll back to top">
+        <span>↑ TOP</span>
+    </button>
+
+    <!-- Keyboard Shortcuts Modal -->
+    <div id="shortcutsModal" class="shortcuts-modal" role="dialog" aria-modal="true" aria-label="Workbench Shortcuts">
+        <div class="shortcuts-card">
+            <div class="shortcuts-header">
+                <h3>WORKBENCH SHORTCUTS</h3>
+                <button type="button" id="closeShortcutsBtn" class="workbench-btn close-btn" aria-label="Close modal">
+                    <span>✕</span>
+                </button>
+            </div>
+            <div class="shortcuts-list">
+                <div class="shortcut-row">
+                    <span>Next / Previous Print</span>
+                    <div style="display:flex; gap:4px;"><kbd class="shortcut-key">←</kbd><kbd
+                            class="shortcut-key">→</kbd></div>
+                </div>
+                <div class="shortcut-row">
+                    <span>Close Inspection Viewer</span>
+                    <kbd class="shortcut-key">ESC</kbd>
+                </div>
+                <div class="shortcut-row">
+                    <span>Toggle Fullscreen</span>
+                    <kbd class="shortcut-key">F</kbd>
+                </div>
+                <div class="shortcut-row">
+                    <span>Toggle Loupe Zoom</span>
+                    <kbd class="shortcut-key">Z</kbd>
+                </div>
+                <div class="shortcut-row">
+                    <span>Pin / Like Print</span>
+                    <kbd class="shortcut-key">L</kbd>
+                </div>
+                <div class="shortcut-row">
+                    <span>Shuffle Prints</span>
+                    <kbd class="shortcut-key">R</kbd>
+                </div>
+                <div class="shortcut-row">
+                    <span>Focus Search Box</span>
+                    <kbd class="shortcut-key">/</kbd>
+                </div>
+                <div class="shortcut-row">
+                    <span>Toggle Shutter Click</span>
+                    <kbd class="shortcut-key">M</kbd>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Live Toast Container -->
+    <div id="toastContainer" class="toast-container" aria-live="polite"></div>
+
+    <!-- Application Script -->
+    <script src="app.js" defer></script>
+</body>
 
 </html>
